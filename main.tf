@@ -330,3 +330,13 @@ resource "aws_autoscaling_group" "web_asg" {
     propagate_at_launch = true
   }
 }
+
+# RDS Subnet Group: Defines which subnets the database can use
+resource "aws_db_subnet_group" "db_subnet_group" {
+  name       = "db-subnet-group"
+  subnet_ids = [aws_subnet.private_db_1.id, aws_subnet.private_db_2.id]
+
+  tags = {
+    Name = "db-subnet-group"
+  }
+}
