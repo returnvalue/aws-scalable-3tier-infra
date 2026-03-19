@@ -158,3 +158,25 @@ resource "aws_route_table" "private_rt" {
     Name = "private-route-table"
   }
 }
+
+# Associate Private App Subnets with Private Route Table
+resource "aws_route_table_association" "app_1" {
+  subnet_id      = aws_subnet.private_app_1.id
+  route_table_id = aws_route_table.private_rt.id
+}
+
+resource "aws_route_table_association" "app_2" {
+  subnet_id      = aws_subnet.private_app_2.id
+  route_table_id = aws_route_table.private_rt.id
+}
+
+# Associate Private DB Subnets with Private Route Table
+resource "aws_route_table_association" "db_1" {
+  subnet_id      = aws_subnet.private_db_1.id
+  route_table_id = aws_route_table.private_rt.id
+}
+
+resource "aws_route_table_association" "db_2" {
+  subnet_id      = aws_subnet.private_db_2.id
+  route_table_id = aws_route_table.private_rt.id
+}
