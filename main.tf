@@ -90,3 +90,14 @@ resource "aws_subnet" "private_app_1" {
     Name = "private-app-subnet-1"
   }
 }
+
+# Private App Subnet 2: Hosted in us-east-1b for high availability
+resource "aws_subnet" "private_app_2" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.4.0/24"
+  availability_zone = "us-east-1b"
+
+  tags = {
+    Name = "private-app-subnet-2"
+  }
+}
