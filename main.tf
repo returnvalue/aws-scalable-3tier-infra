@@ -101,3 +101,14 @@ resource "aws_subnet" "private_app_2" {
     Name = "private-app-subnet-2"
   }
 }
+
+# Private DB Subnet 1: Hosted in us-east-1a for the Database tier
+resource "aws_subnet" "private_db_1" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.5.0/24"
+  availability_zone = "us-east-1a"
+
+  tags = {
+    Name = "private-db-subnet-1"
+  }
+}
