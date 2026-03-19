@@ -79,3 +79,14 @@ resource "aws_subnet" "public_2" {
     Name = "public-subnet-2"
   }
 }
+
+# Private App Subnet 1: Hosted in us-east-1a for the Application tier
+resource "aws_subnet" "private_app_1" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "us-east-1a"
+
+  tags = {
+    Name = "private-app-subnet-1"
+  }
+}
