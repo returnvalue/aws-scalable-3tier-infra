@@ -46,3 +46,12 @@ resource "aws_vpc" "main" {
     Name = "scalable-vpc"
   }
 }
+
+# Internet Gateway: Gateway to the public internet for our VPC
+resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "scalable-igw"
+  }
+}
