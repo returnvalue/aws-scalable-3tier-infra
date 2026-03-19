@@ -258,3 +258,14 @@ resource "aws_security_group" "db_sg" {
     Name = "db-sg"
   }
 }
+
+# AMI Data Source: Dynamic lookup for the latest Amazon Linux 2 image
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}
