@@ -269,3 +269,22 @@ data "aws_ami" "amazon_linux" {
     values = ["amzn2-ami-hvm-*-x86_64-gp2"]
   }
 }
+
+# Launch Template: Blueprint for Auto Scaling Group instances
+resource "aws_launch_template" "web_lt" {
+  name_prefix   = "web-launch-template"
+  image_id      = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+
+  network_interfaces {
+    associate_public_ip_address = false
+    security_groups             = [aws_security_group.web_sg.id]
+  }
+
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "web-server-asg"
+    }
+  }
+}
