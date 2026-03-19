@@ -123,3 +123,17 @@ resource "aws_subnet" "private_db_2" {
     Name = "private-db-subnet-2"
   }
 }
+
+# Public Route Table: Routes for public internet access
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main.id
+  }
+
+  tags = {
+    Name = "public-route-table"
+  }
+}
